@@ -164,18 +164,94 @@ TABELA_64 = [
 ]
 
 # --------------------------------------------
-# FUNÇÕES AUXILIARES - CORRIGIDAS
+# Tabela 6.5 - Fatores de demanda para ar condicionado (residencial)
+# --------------------------------------------
+TABELA_65 = [
+    {"faixa": "1 a 4", "num_min": 1, "num_max": 4, "fator": 100},
+    {"faixa": "5 a 10", "num_min": 5, "num_max": 10, "fator": 70},
+    {"faixa": "11 a 20", "num_min": 11, "num_max": 20, "fator": 60},
+    {"faixa": "21 a 30", "num_min": 21, "num_max": 30, "fator": 55},
+    {"faixa": "31 a 40", "num_min": 31, "num_max": 40, "fator": 53},
+    {"faixa": "41 a 50", "num_min": 41, "num_max": 50, "fator": 52},
+    {"faixa": "acima de 50", "num_min": 51, "num_max": 999, "fator": 50},
+]
+
+# --------------------------------------------
+# Tabela 6.6 - Fatores de demanda para ar condicionado (não residencial)
+# --------------------------------------------
+TABELA_66 = [
+    {"faixa": "1 a 10", "num_min": 1, "num_max": 10, "fator": 100},
+    {"faixa": "11 a 20", "num_min": 11, "num_max": 20, "fator": 75},
+    {"faixa": "21 a 30", "num_min": 21, "num_max": 30, "fator": 70},
+    {"faixa": "31 a 40", "num_min": 31, "num_max": 40, "fator": 65},
+    {"faixa": "41 a 50", "num_min": 41, "num_max": 50, "fator": 60},
+    {"faixa": "51 a 80", "num_min": 51, "num_max": 80, "fator": 55},
+    {"faixa": "acima de 80", "num_min": 81, "num_max": 999, "fator": 50},
+]
+
+# --------------------------------------------
+# Tabela 6.7 - Fatores de demanda para ar condicionado central
+# --------------------------------------------
+TABELA_67 = [
+    {"faixa": "1 a 10", "num_min": 1, "num_max": 10, "fator": 100},
+    {"faixa": "11 a 20", "num_min": 11, "num_max": 20, "fator": 75},
+    {"faixa": "21 a 30", "num_min": 21, "num_max": 30, "fator": 70},
+    {"faixa": "31 a 40", "num_min": 31, "num_max": 40, "fator": 65},
+    {"faixa": "41 a 50", "num_min": 41, "num_max": 50, "fator": 60},
+    {"faixa": "51 a 80", "num_min": 51, "num_max": 80, "fator": 55},
+    {"faixa": "acima de 80", "num_min": 81, "num_max": 999, "fator": 50},
+]
+
+# --------------------------------------------
+# Tabela 6.8 - Fatores de demanda para motores elétricos
+# --------------------------------------------
+TABELA_68 = [
+    {"num_motores": 1, "fator": 100.0},
+    {"num_motores": 2, "fator": 75.0},
+    {"num_motores": 3, "fator": 63.33},
+    {"num_motores": 4, "fator": 57.5},
+    {"num_motores": 5, "fator": 54.0},
+    {"num_motores": 6, "fator": 50.0},
+    {"num_motores": 7, "fator": 47.14},
+    {"num_motores": 8, "fator": 45.0},
+    {"num_motores": 9, "fator": 43.33},
+    {"num_motores": 10, "fator": 42.0},
+]
+
+# --------------------------------------------
+# Tabela 6.9 - Fatores de demanda para equipamentos especiais
+# --------------------------------------------
+TABELA_69 = {
+    "solda": [
+        {"faixa": "1", "num_min": 1, "num_max": 1, "fator": 100},
+        {"faixa": "2 a 3", "num_min": 2, "num_max": 3, "fator": 70},
+        {"faixa": "4 a 7", "num_min": 4, "num_max": 7, "fator": 60},
+        {"faixa": "mais de 7", "num_min": 8, "num_max": 999, "fator": 50},
+    ],
+    "raio_x": [
+        {"faixa": "1", "num_min": 1, "num_max": 1, "fator": 100},
+        {"faixa": "2 a 5", "num_min": 2, "num_max": 5, "fator": 60},
+        {"faixa": "6 a 10", "num_min": 6, "num_max": 10, "fator": 50},
+        {"faixa": "mais de 10", "num_min": 11, "num_max": 999, "fator": 40},
+    ],
+}
+
+# --------------------------------------------
+# FUNÇÕES AUXILIARES
 # --------------------------------------------
 
 def get_potencia(aparelho_nome):
     """Busca potência na Tabela 6.1 por nome do aparelho"""
+    busca = aparelho_nome.lower()
     for item in TABELA_61:
-        # Verifica se o nome do aparelho contém a palavra-chave
-        if aparelho_nome.lower() in item["aparelho"].lower():
+        if busca in item["aparelho"].lower():
             return item["potencia_va"]
-        # Verifica também por números (ex: "4400" no caso do chuveiro)
-        if str(aparelho_nome).replace("W", "") in item["aparelho"]:
-            return item["potencia_va"]
+        if "chuveiro" in busca and "chuveiro" in item["aparelho"].lower():
+            import re
+            numeros_busca = re.findall(r'\d+', busca)
+            numeros_item = re.findall(r'\d+', item["aparelho"].lower())
+            if numeros_busca and numeros_item and numeros_busca[0] in numeros_item:
+                return item["potencia_va"]
     return None
 
 def get_conversao_cv_kva(cv):
@@ -190,7 +266,6 @@ def get_fator_aquecimento(num_aparelhos):
     for item in TABELA_64:
         if item["num_aparelhos"] == num_aparelhos:
             return item["fator"]
-    # Se não encontrar (acima de 25), retorna 30%
     return 30
 
 def get_fator_iluminacao(tipo, carga_kva):
@@ -219,16 +294,53 @@ def get_fator_iluminacao(tipo, carga_kva):
         else:
             return 24
     else:
-        # Para outros tipos, retorna 80% como padrão
         return 80
 
-# --------------------------------------------
-# FUNÇÃO PARA VERIFICAR CONTAGEM DAS TABELAS
-# --------------------------------------------
+def get_fator_ar_residencial(num_aparelhos):
+    """Retorna fator de demanda para ar condicionado residencial (Tabela 6.5)"""
+    for item in TABELA_65:
+        if item["num_min"] <= num_aparelhos <= item["num_max"]:
+            return item["fator"]
+    return 50
+
+def get_fator_ar_nao_residencial(num_aparelhos):
+    """Retorna fator de demanda para ar condicionado não residencial (Tabela 6.6)"""
+    for item in TABELA_66:
+        if item["num_min"] <= num_aparelhos <= item["num_max"]:
+            return item["fator"]
+    return 50
+
+def get_fator_ar_central(num_aparelhos):
+    """Retorna fator de demanda para ar condicionado central (Tabela 6.7)"""
+    for item in TABELA_67:
+        if item["num_min"] <= num_aparelhos <= item["num_max"]:
+            return item["fator"]
+    return 50
+
+def get_fator_motores(num_motores):
+    """Retorna fator de demanda para motores (Tabela 6.8)"""
+    for item in TABELA_68:
+        if item["num_motores"] == num_motores:
+            return item["fator"]
+    return 42.0
+
+def get_fator_especial(tipo, quantidade):
+    """Retorna fator de demanda para equipamentos especiais (Tabela 6.9)"""
+    tabela = TABELA_69.get(tipo, TABELA_69["solda"])
+    for item in tabela:
+        if item["num_min"] <= quantidade <= item["num_max"]:
+            return item["fator"]
+    return 50
+
 def mostrar_estatisticas():
     """Mostra estatísticas das tabelas carregadas"""
     print(f"Tabela 6.1: {len(TABELA_61)} aparelhos")
     print(f"Tabela 6.2: {len(TABELA_62)} conversões")
     print(f"Tabela 6.3: {len(TABELA_63)} tipos")
     print(f"Tabela 6.4: {len(TABELA_64)} faixas")
+    print(f"Tabela 6.5: {len(TABELA_65)} faixas (ar residencial)")
+    print(f"Tabela 6.6: {len(TABELA_66)} faixas (ar não residencial)")
+    print(f"Tabela 6.7: {len(TABELA_67)} faixas (ar central)")
+    print(f"Tabela 6.8: {len(TABELA_68)} faixas (motores)")
+    print(f"Tabela 6.9: solda: {len(TABELA_69['solda'])} faixas, raio-x: {len(TABELA_69['raio_x'])} faixas")
 
