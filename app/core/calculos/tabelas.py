@@ -164,13 +164,17 @@ TABELA_64 = [
 ]
 
 # --------------------------------------------
-# FUNÇÕES AUXILIARES
+# FUNÇÕES AUXILIARES - CORRIGIDAS
 # --------------------------------------------
 
 def get_potencia(aparelho_nome):
     """Busca potência na Tabela 6.1 por nome do aparelho"""
     for item in TABELA_61:
+        # Verifica se o nome do aparelho contém a palavra-chave
         if aparelho_nome.lower() in item["aparelho"].lower():
+            return item["potencia_va"]
+        # Verifica também por números (ex: "4400" no caso do chuveiro)
+        if str(aparelho_nome).replace("W", "") in item["aparelho"]:
             return item["potencia_va"]
     return None
 
@@ -191,7 +195,6 @@ def get_fator_aquecimento(num_aparelhos):
 
 def get_fator_iluminacao(tipo, carga_kva):
     """Calcula fator de demanda para iluminação (Tabela 6.3)"""
-    # Implementação simplificada - pode ser expandida
     if tipo == "Residencial":
         if carga_kva <= 1:
             return 80
@@ -218,3 +221,14 @@ def get_fator_iluminacao(tipo, carga_kva):
     else:
         # Para outros tipos, retorna 80% como padrão
         return 80
+
+# --------------------------------------------
+# FUNÇÃO PARA VERIFICAR CONTAGEM DAS TABELAS
+# --------------------------------------------
+def mostrar_estatisticas():
+    """Mostra estatísticas das tabelas carregadas"""
+    print(f"Tabela 6.1: {len(TABELA_61)} aparelhos")
+    print(f"Tabela 6.2: {len(TABELA_62)} conversões")
+    print(f"Tabela 6.3: {len(TABELA_63)} tipos")
+    print(f"Tabela 6.4: {len(TABELA_64)} faixas")
+
