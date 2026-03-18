@@ -205,3 +205,22 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+# Backups
+*.bkp
+*.bak
+*.tmp
+*.swp
+*.swo
+
+# Ambiente virtual
+venv/
+env/
+.env
+.venv
+
+# IDE
+.vscode/
+.idea/
+
+# Projeto
+app/core/calculos/*.bkp
