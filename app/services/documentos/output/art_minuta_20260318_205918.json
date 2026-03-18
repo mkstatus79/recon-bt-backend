@@ -1,0 +1,29 @@
+{
+  "profissional": {
+    "nome": "Eng. Marcos",
+    "registro": "2026123456",
+    "conselho": "CREA-RJ"
+  },
+  "contratante": {
+    "nome": "João da Silva",
+    "cpf_cnpj": "123.456.789-00"
+  },
+  "empreendimento": {
+    "nome": "Edifício Solar",
+    "endereco": ""
+  },
+  "atividade": {
+    "tipo": "PROJETO DE ENTRADA DE ENERGIA ELÉTRICA",
+    "norma": "RECON-BT 2026",
+    "descricao": "Projeto de entrada coletiva com 24 unidades"
+  },
+  "dados_tecnicos": {
+    "demanda_kva": 75.88,
+    "area_m2": 1680,
+    "nivel_tensao": "220/127V"
+  },
+  "controle": {
+    "data_emissao": "18/03/2026",
+    "hash_validacao": "ART-20260318205918"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "consumidor": {
+    "nome": "João da Silva",
+    "cpf_cnpj": "123.456.789-00",
+    "telefone": "(21) 99999-9999",
+    "email": "joao@email.com"
+  },
+  "endereco": {
+    "logradouro": "Rua das Flores",
+    "numero": "123",
+    "complemento": "Apto 101",
+    "bairro": "Centro",
+    "cidade": "Rio de Janeiro",
+    "cep": "20000-000"
+  },
+  "tecnico": {
+    "nome": "Eng. Marcos",
+    "crea": "2026123456",
+    "art": "202600123456"
+  },
+  "instalacao": {
+    "tipo_entrada": "COLETIVA",
+    "num_ucs": 24,
+    "demanda_total_kva": 75.88,
+    "demanda_ramal_kva": 82.97,
+    "tensao": "220/127V",
+    "fases": 3
+  },
+  "materiais": {
+    "disjuntor": "175A",
+    "condutor": "4x95",
+    "caixa_medicao": "CSM600",
+    "caixa_protecao": "CPG200"
+  },
+  "documentos_anexos": {
+    "projeto_aprovado": true,
+    "art_execucao": "202600654321",
+    "procuracoes": [
+      "Procuração anexa"
+    ]
+  },
+  "controle": {
+    "data_geracao": "2026-03-18T20:59:18.811656",
+    "versao_formulario": "2026.1",
+    "protocolo": "LGT-20260318205918"
+  }
+}

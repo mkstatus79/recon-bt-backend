@@ -1,0 +1,28 @@
+{
+  "projeto": "Edifício Solar",
+  "data": "18/03/2026",
+  "materiais": [
+    {
+      "codigo": "DISJ-175",
+      "descricao": "Disjuntor 175A tripolar",
+      "quantidade": 1,
+      "unidade": "un",
+      "observacao": ""
+    },
+    {
+      "codigo": "CABO-95",
+      "descricao": "Cabo 95mm²",
+      "quantidade": 120,
+      "unidade": "m",
+      "observacao": ""
+    },
+    {
+      "codigo": "CX-CSM600",
+      "descricao": "Caixa CSM600",
+      "quantidade": 1,
+      "unidade": "un",
+      "observacao": ""
+    }
+  ],
+  "observacoes": "Lista gerada automaticamente pelo sistema RECON-BT 2026"
+}

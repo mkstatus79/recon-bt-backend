@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Memorial Descritivo - RECON-BT 2026</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        h1 { color: #003366; text-align: center; }
+        h2 { color: #003366; border-bottom: 2px solid #003366; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th { background-color: #003366; color: white; padding: 10px; }
+        td { border: 1px solid #ccc; padding: 8px; }
+        .header { text-align: center; margin-bottom: 30px; }
+        .footer { margin-top: 50px; font-size: 0.9em; }
+        .assinatura { margin-top: 30px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>MEMORIAL DESCRITIVO E DE CÁLCULO</h1>
+        <h2>PROJETO DE ENTRADA DE ENERGIA ELÉTRICA</h2>
+        <p>RECON-BT 2026 - Light Serviços de Eletricidade S/A</p>
+    </div>
+
+    <h2>1. IDENTIFICAÇÃO</h2>
+    <table>
+        <tr><td width="30%"><strong>Empreendimento:</strong></td><td>{{empreendimento}}</td></tr>
+        <tr><td><strong>Endereço:</strong></td><td>{{endereco}}</td></tr>
+        <tr><td><strong>Responsável Técnico:</strong></td><td>{{responsavel}} - CREA: {{crea}}</td></tr>
+        <tr><td><strong>Cliente:</strong></td><td>{{cliente}}</td></tr>
+        <tr><td><strong>Data:</strong></td><td>{{data}}</td></tr>
+    </table>
+
+    <h2>2. CARACTERÍSTICAS DA EDIFICAÇÃO</h2>
+    <table>
+        <tr><td><strong>Tipo de entrada:</strong></td><td>{{tipo_entrada}}</td></tr>
+        <tr><td><strong>Número de unidades:</strong></td><td>{{num_ucs}}</td></tr>
+        <tr><td><strong>Área total construída:</strong></td><td>{{area_total}} m²</td></tr>
+        <tr><td><strong>Tensão de fornecimento:</strong></td><td>{{tensao}}</td></tr>
+    </table>
+
+    <h2>3. CÁLCULO DE DEMANDA</h2>
+    <h3>3.1 Unidades Consumidoras</h3>
+    <table>
+        <tr>
+            <th>UC</th>
+            <th>Área (m²)</th>
+            <th>Demanda (kVA)</th>
+            <th>Observação</th>
+        </tr>
+        {% for uc in unidades %}
+        <tr>
+            <td>{{uc.identificacao}}</td>
+            <td>{{uc.area}}</td>
+            <td>{{uc.demanda}}</td>
+            <td>{{uc.obs}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h3>3.2 Demanda do Serviço (Condomínio)</h3>
+    <table>
+        <tr>
+            <th>Tipo de Carga</th>
+            <th>Potência (kVA)</th>
+            <th>Fator de Demanda (%)</th>
+            <th>Demanda (kVA)</th>
+        </tr>
+        {% for servico in servico_cargas %}
+        <tr>
+            <td>{{servico.tipo}}</td>
+            <td>{{servico.potencia}}</td>
+            <td>{{servico.fd}}%</td>
+            <td>{{servico.demanda}}</td>
+        </tr>
+        {% endfor %}
+        <tr style="font-weight: bold;">
+            <td colspan="3" align="right">Demanda total do serviço:</td>
+            <td>{{demanda_servico_total}}</td>
+        </tr>
+    </table>
+
+    <h3>3.3 Demanda da Proteção Geral</h3>
+    <p>DPG = {{demanda_protecao}} kVA</p>
+
+    <h3>3.4 Demanda do Ramal de Entrada</h3>
+    <p>DR = (DPG + DS) × 0,90 = {{demanda_ramal}} kVA</p>
+
+    <h2>4. DIMENSIONAMENTO DOS MATERIAIS</h2>
+    
+    <h3>4.1 Condutores</h3>
+    <table>
+        <tr><th>Trecho</th><th>Fase (mm²)</th><th>Neutro (mm²)</th><th>Proteção (mm²)</th></tr>
+        <tr><td>Ramal de entrada</td><td>{{condutor_fase}}</td><td>{{condutor_neutro}}</td><td>{{condutor_protecao}}</td></tr>
+    </table>
+
+    <h3>4.2 Proteção Geral</h3>
+    <table>
+        <tr><td><strong>Disjuntor:</strong></td><td>{{disjuntor}} A - {{disjuntor_polos}} polos</td></tr>
+        <tr><td><strong>Capacidade de interrupção:</strong></td><td>{{disjuntor_ka}} kA</td></tr>
+        <tr><td><strong>Caixa:</strong></td><td>{{caixa_protecao}}</td></tr>
+    </table>
+
+    <h3>4.3 Medição</h3>
+    <table>
+        <tr><td><strong>Tipo:</strong></td><td>{{tipo_medicao}}</td></tr>
+        <tr><td><strong>Caixa de medição:</strong></td><td>{{caixa_medicao}}</td></tr>
+        <tr><td><strong>Painel de medidores:</strong></td><td>{{painel_medidores}}</td></tr>
+    </table>
+
+    <h3>4.4 Eletrodutos</h3>
+    <table>
+        <tr><td><strong>Ramal aéreo:</strong></td><td>{{eletroduto_aereo}}</td></tr>
+        <tr><td><strong>Ramal subterrâneo:</strong></td><td>{{eletroduto_sub}}</td></tr>
+    </table>
+
+    <h3>4.5 Aterramento</h3>
+    <table>
+        <tr><td><strong>Número de hastes:</strong></td><td>{{num_hastes}}</td></tr>
+        <tr><td><strong>Tipo de haste:</strong></td><td>5/8" × 2,40m - aço cobreado</td></tr>
+        <tr><td><strong>Condutor de interligação:</strong></td><td>cobre nu {{condutor_aterramento}} mm²</td></tr>
+    </table>
+
+    <h2>5. NORMAS E REGULAMENTAÇÕES</h2>
+    <ul>
+        <li>RECON-BT 2026 - Light Serviços de Eletricidade S/A</li>
+        <li>Resolução ANEEL nº 1000/2021</li>
+        <li>NBR 5410 - Instalações elétricas de baixa tensão</li>
+        <li>NBR 15465 - Sistemas de eletrodutos plásticos</li>
+    </ul>
+
+    <h2>6. RESPONSABILIDADE TÉCNICA</h2>
+    <div class="assinatura">
+        <p>_________________________________________</p>
+        <p>{{responsavel}} - CREA {{crea}}</p>
+        <p>ART nº {{art}}</p>
+    </div>
+
+    <div class="footer">
+        <p>Este memorial é parte integrante do projeto de entrada de energia elétrica</p>
+        <p>Documento gerado em {{data_hora}} pelo sistema RECON-BT 2026</p>
+    </div>
+</body>
+</html>
