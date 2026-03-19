@@ -1,0 +1,57 @@
+{
+  "data": "2026-03-19T08:53:46.218096",
+  "materiais": [
+    {
+      "codigo": "DIS-175",
+      "descricao": "Disjuntor tripolar 175A",
+      "fabricante": "Schneider",
+      "quantidade": 1,
+      "unidade": "un",
+      "preco_unit": 850.0,
+      "total": 850.0,
+      "aplicacao": "Prote\u00e7\u00e3o geral"
+    },
+    {
+      "codigo": "CAB-95",
+      "descricao": "Cabo de cobre 95mm\u00b2 PVC",
+      "fabricante": "Prysmian",
+      "quantidade": 120,
+      "unidade": "m",
+      "preco_unit": 45.5,
+      "total": 5460.0,
+      "aplicacao": "Ramal de entrada"
+    },
+    {
+      "codigo": "CAB-50",
+      "descricao": "Cabo de cobre 50mm\u00b2 (prote\u00e7\u00e3o)",
+      "fabricante": "Prysmian",
+      "quantidade": 50,
+      "unidade": "m",
+      "preco_unit": 28.9,
+      "total": 1445.0,
+      "aplicacao": "Condutor de prote\u00e7\u00e3o"
+    },
+    {
+      "codigo": "CX-CSM600",
+      "descricao": "Caixa CSM600",
+      "fabricante": "Multipol",
+      "quantidade": 1,
+      "unidade": "un",
+      "preco_unit": 1250.0,
+      "total": 1250.0,
+      "aplicacao": "Medi\u00e7\u00e3o"
+    },
+    {
+      "codigo": "HASTE-58",
+      "descricao": "Haste a\u00e7o cobreada 5/8\"x2,40m",
+      "fabricante": "Plasson",
+      "quantidade": 6,
+      "unidade": "un",
+      "preco_unit": 85.0,
+      "total": 510.0,
+      "aplicacao": "Aterramento"
+    }
+  ],
+  "total": 9515.0,
+  "observacoes": "Pre\u00e7os estimados - sujeitos a altera\u00e7\u00e3o"
+}

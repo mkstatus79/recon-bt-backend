@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Light - Pedido de Serviços Diversos (PSD)</title>
+    <style>
+        /* ===== IDENTIDADE VISUAL LIGHT ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #F5F5F5;
+            padding: 20px;
+        }
+        
+        .formulario-light {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #FFFFFF;
+            border: 2px solid #003366;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        /* ===== CABEÇALHO LIGHT ===== */
+        .header-light {
+            background-color: #003366;
+            color: white;
+            padding: 20px;
+            border-radius: 6px 6px 0 0;
+            text-align: center;
+        }
+        
+        .header-light h1 {
+            font-family: Arial Black, sans-serif;
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        
+        .header-light h2 {
+            font-size: 16px;
+            font-weight: normal;
+            margin-bottom: 10px;
+        }
+        
+        .header-light .protocolo {
+            font-size: 14px;
+            color: #FFD700;
+            margin-top: 10px;
+        }
+        
+        /* ===== CORPO DO FORMULÁRIO ===== */
+        .corpo-form {
+            padding: 30px;
+        }
+        
+        .secao {
+            margin-bottom: 30px;
+            border-left: 4px solid #003366;
+            padding-left: 15px;
+        }
+        
+        .secao h3 {
+            color: #003366;
+            font-family: Arial Black, sans-serif;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .campo {
+            margin-bottom: 15px;
+        }
+        
+        .campo label {
+            display: block;
+            color: #333333;
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        
+        .campo input, .campo select, .campo textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #CCCCCC;
+            border-radius: 4px;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+        }
+        
+        .campo.obrigatorio label::after {
+            content: " *";
+            color: #D32F2F;
+            font-weight: bold;
+        }
+        
+        .linha-dupla {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .linha-tripla {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+        }
+        
+        /* ===== TIPOS DE SERVIÇO ===== */
+        .tipos-servico {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 15px 0;
+        }
+        
+        .tipo-servico-item {
+            border: 1px solid #CCCCCC;
+            border-radius: 4px;
+            padding: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .tipo-servico-item:hover {
+            background-color: #F0F0F0;
+        }
+        
+        .tipo-servico-item.selecionado {
+            background-color: #003366;
+            color: white;
+        }
+        
+        .tipo-servico-item input[type="checkbox"] {
+            display: none;
+        }
+        
+        /* ===== TABELA DE CARGAS ===== */
+        .tabela-cargas {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        .tabela-cargas th {
+            background-color: #003366;
+            color: white;
+            padding: 10px;
+            font-size: 14px;
+            text-align: left;
+        }
+        
+        .tabela-cargas td {
+            border: 1px solid #CCCCCC;
+            padding: 8px;
+        }
+        
+        .tabela-cargas input {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #CCCCCC;
+            border-radius: 4px;
+        }
+        
+        /* ===== QUADRO DE MEDIDORES ===== */
+        .quadro-medidores {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .medidor-item {
+            border: 1px solid #CCCCCC;
+            padding: 10px;
+            text-align: center;
+            border-radius: 4px;
+        }
+        
+        .medidor-item .numero {
+            font-size: 20px;
+            font-weight: bold;
+            color: #003366;
+        }
+        
+        /* ===== DOCUMENTOS ANEXOS ===== */
+        .documentos-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .documento-item {
+            border: 1px dashed #CCCCCC;
+            padding: 15px;
+            text-align: center;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .documento-item:hover {
+            background-color: #F9F9F9;
+        }
+        
+        /* ===== BOTÕES ===== */
+        .botoes {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #F5F5F5;
+            border-radius: 0 0 6px 6px;
+        }
+        
+        .btn-light {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            font-family: Arial Black, sans-serif;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background-color: #003366;
+            color: white;
+        }
+        
+        .btn-secondary {
+            background-color: #FFFFFF;
+            color: #003366;
+            border: 2px solid #003366;
+        }
+        
+        /* ===== AVISOS ===== */
+        .aviso {
+            background-color: #FFF3E0;
+            border-left: 4px solid #FBC02D;
+            padding: 15px;
+            margin: 20px 0;
+            font-size: 13px;
+        }
+        
+        .aviso.importante {
+            background-color: #FFEBEE;
+            border-left-color: #D32F2F;
+        }
+    </style>
+</head>
+<body>
+    <div class="formulario-light">
+        <!-- CABEÇALHO -->
+        <div class="header-light">
+            <h1>PEDIDO DE SERVIÇOS DIVERSOS</h1>
+            <h2>PSD - RECON-BT 2026</h2>
+            <p>Light Serviços de Eletricidade S/A</p>
+            <div class="protocolo">Protocolo: PSD-20260319085655</div>
+        </div>
+
+        <div class="corpo-form">
+            <!-- SEÇÃO 1: IDENTIFICAÇÃO DO CONSUMIDOR -->
+            <div class="secao">
+                <h3>1. IDENTIFICAÇÃO DO CONSUMIDOR</h3>
+                
+                <div class="campo obrigatorio">
+                    <label>UC (Unidade Consumidora)</label>
+                    <input type="text" value="" placeholder="Número da UC">
+                </div>
+                
+                <div class="campo obrigatorio">
+                    <label>Nome/Razão Social</label>
+                    <input type="text" value="João da Silva">
+                </div>
+                
+                <div class="linha-dupla">
+                    <div class="campo obrigatorio">
+                        <label>CPF/CNPJ</label>
+                        <input type="text" value="123.456.789-00">
+                    </div>
+                    <div class="campo">
+                        <label>Telefone</label>
+                        <input type="text" value="">
+                    </div>
+                </div>
+                
+                <div class="campo">
+                    <label>E-mail</label>
+                    <input type="email" value="">
+                </div>
+            </div>
+
+            <!-- SEÇÃO 2: ENDEREÇO DA UNIDADE -->
+            <div class="secao">
+                <h3>2. ENDEREÇO DA UNIDADE CONSUMIDORA</h3>
+                
+                <div class="campo obrigatorio">
+                    <label>Logradouro</label>
+                    <input type="text" value="Rua das Flores">
+                </div>
+                
+                <div class="linha-tripla">
+                    <div class="campo obrigatorio">
+                        <label>Número</label>
+                        <input type="text" value="123">
+                    </div>
+                    <div class="campo">
+                        <label>Complemento</label>
+                        <input type="text" value="">
+                    </div>
+                    <div class="campo obrigatorio">
+                        <label>CEP</label>
+                        <input type="text" value="">
+                    </div>
+                </div>
+                
+                <div class="linha-dupla">
+                    <div class="campo obrigatorio">
+                        <label>Bairro</label>
+                        <input type="text" value="Centro">
+                    </div>
+                    <div class="campo obrigatorio">
+                        <label>Cidade</label>
+                        <input type="text" value="Rio de Janeiro">
+                    </div>
+                </div>
+            </div>
+
+            <!-- SEÇÃO 3: TIPO DE SERVIÇO SOLICITADO -->
+            <div class="secao">
+                <h3>3. TIPO DE SERVIÇO SOLICITADO</h3>
+                
+                <div class="tipos-servico">
+                    <div class="tipo-servico-item selecionado">
+                        <input type="checkbox" name="servico" value="AUMENTO_CARGA" checked>
+                        <label>Aumento de Carga</label>
+                    </div>
+                    <div class="tipo-servico-item ">
+                        <input type="checkbox" name="servico" value="DIMINUICAO_CARGA" >
+                        <label>Diminuição de Carga</label>
+                    </div>
+                    <div class="tipo-servico-item ">
+                        <input type="checkbox" name="servico" value="RELOCACAO_MEDIDOR" >
+                        <label>Relocação de Medidor</label>
+                    </div>
+                    <div class="tipo-servico-item ">
+                        <input type="checkbox" name="servico" value="SUBSTITUICAO" >
+                        <label>Substituição de Equipamento</label>
+                    </div>
+                    <div class="tipo-servico-item ">
+                        <input type="checkbox" name="servico" value="PADRONIZACAO" >
+                        <label>Padronização de Entrada</label>
+                    </div>
+                    <div class="tipo-servico-item ">
+                        <input type="checkbox" name="servico" value="VIATEC" >
+                        <label>Vistoria Técnica (VIATEC)</label>
+                    </div>
+                </div>
+                
+                <div class="campo">
+                    <label>Outros (especificar)</label>
+                    <input type="text" value="">
+                </div>
+            </div>
+
+            <!-- SEÇÃO 4: DADOS DA ALTERAÇÃO (quando aplicável) -->
+            <div class="secao">
+                <h3>4. DADOS DA ALTERAÇÃO</h3>
+                
+                <table class="tabela-cargas">
+                    <thead>
+                        <tr>
+                            <th>Tipo</th>
+                            <th>Situação Atual</th>
+                            <th>Situação Pretendida</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Carga Instalada (kVA)</td>
+                            <td><input type="number" value="0" step="0.01"></td>
+                            <td><input type="number" value="0" step="0.01"></td>
+                        </tr>
+                        <tr>
+                            <td>Número de Fases</td>
+                            <td>
+                                <select>
+                                    <option value="1" >1 fase</option>
+                                    <option value="2" >2 fases</option>
+                                    <option value="3" selected>3 fases</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select>
+                                    <option value="1" >1 fase</option>
+                                    <option value="2" >2 fases</option>
+                                    <option value="3" selected>3 fases</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Tensão de Fornecimento</td>
+                            <td>
+                                <select>
+                                    <option value="127V" >127V</option>
+                                    <option value="220/127V" selected>220/127V</option>
+                                    <option value="380/220V" >380/220V</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select>
+                                    <option value="127V" >127V</option>
+                                    <option value="220/127V" selected>220/127V</option>
+                                    <option value="380/220V" >380/220V</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- SEÇÃO 5: IDENTIFICAÇÃO DOS MEDIDORES (para relocação/substituição) -->
+            <div class="secao">
+                <h3>5. IDENTIFICAÇÃO DOS MEDIDORES</h3>
+                
+                <div class="quadro-medidores">
+                    <div class="medidor-item">
+                        <div class="numero"></div>
+                        <div>Medidor 1</div>
+                    </div>
+                    <div class="medidor-item">
+                        <div class="numero"></div>
+                        <div>Medidor 2</div>
+                    </div>
+                    <div class="medidor-item">
+                        <div class="numero"></div>
+                        <div>Medidor 3</div>
+                    </div>
+                    <div class="medidor-item">
+                        <div class="numero"></div>
+                        <div>Medidor 4</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SEÇÃO 6: DOCUMENTOS ANEXOS -->
+            <div class="secao">
+                <h3>6. DOCUMENTOS ANEXOS</h3>
+                
+                <div class="documentos-grid">
+                    <div class="documento-item" onclick="anexarDocumento('art')">
+                        📄 ART/RRT/TRT
+                        
+                    </div>
+                    <div class="documento-item" onclick="anexarDocumento('projeto')">
+                        📐 Projeto de Entrada
+                        
+                    </div>
+                    <div class="documento-item" onclick="anexarDocumento('procuração')">
+                        📝 Procuração
+                        
+                    </div>
+                    <div class="documento-item" onclick="anexarDocumento('fotos')">
+                        📸 Fotos do Padrão
+                        
+                    </div>
+                </div>
+            </div>
+
+            <!-- AVISOS IMPORTANTES -->
+            <div class="aviso importante">
+                <strong>ATENÇÃO:</strong> Para serviços de aumento de carga, verificar a necessidade de projeto aprovado conforme REG-BT-002.
+            </div>
+            
+            <div class="aviso">
+                <strong>Materiais:</strong> Certifique-se de que todos os materiais são de fabricantes homologados (REG-MAT-006).
+            </div>
+
+            <!-- DECLARAÇÃO -->
+            <div class="campo" style="margin-top: 30px;">
+                <label>
+                    <input type="checkbox" checked> Declaro que as informações prestadas são verdadeiras e que a instalação atende às normas técnicas vigentes.
+                </label>
+            </div>
+        </div>
+
+        <!-- RODAPÉ COM BOTÕES -->
+        <div class="botoes">
+            <button class="btn-light btn-secondary" onclick="window.print()">IMPRIMIR</button>
+            <button class="btn-light btn-secondary" onclick="salvarRascunho()">SALVAR RASCUNHO</button>
+            <button class="btn-light btn-primary" onclick="enviarLight()">ENVIAR PARA LIGHT</button>
+        </div>
+    </div>
+</body>
+</html>

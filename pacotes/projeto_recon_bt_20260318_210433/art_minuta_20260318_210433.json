@@ -1,0 +1,29 @@
+{
+  "profissional": {
+    "nome": "",
+    "registro": "",
+    "conselho": "CREA-RJ"
+  },
+  "contratante": {
+    "nome": "",
+    "cpf_cnpj": "12.345.678/0001-90"
+  },
+  "empreendimento": {
+    "nome": "",
+    "endereco": ""
+  },
+  "atividade": {
+    "tipo": "PROJETO DE ENTRADA DE ENERGIA ELÉTRICA",
+    "norma": "RECON-BT 2026",
+    "descricao": "Projeto de entrada coletiva com 24 unidades"
+  },
+  "dados_tecnicos": {
+    "demanda_kva": 0,
+    "area_m2": 1680,
+    "nivel_tensao": "220/127V"
+  },
+  "controle": {
+    "data_emissao": "18/03/2026",
+    "hash_validacao": "ART-20260318210433"
+  }
+}

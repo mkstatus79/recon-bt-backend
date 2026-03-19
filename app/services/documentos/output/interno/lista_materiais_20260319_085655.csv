@@ -1,0 +1,8 @@
+﻿Código,Descrição,Fabricante,Quantidade,Unidade,Preço Unit.,Total,Aplicação
+DIS-175,Disjuntor tripolar 175A,Schneider,1,un,R$ 850.00,R$ 850.00,Proteção geral
+CAB-95,Cabo de cobre 95mm² PVC,Prysmian,120,m,R$ 45.50,R$ 5460.00,Ramal de entrada
+CAB-50,Cabo de cobre 50mm² (proteção),Prysmian,50,m,R$ 28.90,R$ 1445.00,Condutor de proteção
+CX-CSM600,Caixa CSM600,Multipol,1,un,R$ 1250.00,R$ 1250.00,Medição
+HASTE-58,"Haste aço cobreada 5/8""x2,40m",Plasson,6,un,R$ 85.00,R$ 510.00,Aterramento
+
+TOTAL GERAL,,,,,,R$ 9515.00

@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Memorial de Cálculo - RECON-BT 2026</title>
+    <style>
+        body { font-family: Arial; margin: 40px; }
+        h1 { color: #003366; border-bottom: 2px solid #003366; }
+        h2 { color: #003366; margin-top: 30px; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th { background: #003366; color: white; padding: 10px; }
+        td { border: 1px solid #ccc; padding: 8px; }
+        .secao { background: #f5f5f5; padding: 15px; margin: 20px 0; }
+        .formula { font-family: monospace; background: #eee; padding: 10px; }
+        .obs { color: #666; font-size: 0.9em; margin-top: 5px; }
+    </style>
+</head>
+<body>
+    <h1>MEMORIAL DE CÁLCULO - RECON-BT 2026</h1>
+    <p><strong>Projeto:</strong> {{projeto_nome}}</p>
+    <p><strong>Data:</strong> {{data}}</p>
+    <p><strong>Responsável:</strong> {{responsavel}}</p>
+
+    <h2>1. DADOS DE ENTRADA</h2>
+    <table>
+        <tr><th>Parâmetro</th><th>Valor</th></tr>
+        {% for item in dados_entrada %}
+        <tr><td>{{item.parametro}}</td><td>{{item.valor}}</td></tr>
+        {% endfor %}
+    </table>
+
+    <h2>2. CÁLCULO DA DEMANDA</h2>
+    
+    <div class="secao">
+        <h3>2.1 Seção A (Unidades Individuais)</h3>
+        {% for uc in unidades %}
+        <h4>UC {{loop.index}}</h4>
+        <table>
+            <tr><th>Parcela</th><th>Carga (kVA)</th><th>FD (%)</th><th>Demanda (kVA)</th></tr>
+            {% for parcela in uc.parcelas %}
+            <tr>
+                <td>{{parcela.descricao}}</td>
+                <td>{{parcela.carga}}</td>
+                <td>{{parcela.fd}}</td>
+                <td>{{parcela.demanda}}</td>
+            </tr>
+            {% endfor %}
+            <tr style="font-weight: bold;">
+                <td colspan="3">TOTAL</td>
+                <td>{{uc.total}}</td>
+            </tr>
+        </table>
+        {% endfor %}
+    </div>
+
+    <div class="secao">
+        <h3>2.2 Seção B (Conjunto)</h3>
+        <table>
+            <tr><th>Parâmetro</th><th>Valor</th><th>Fórmula</th></tr>
+            {% for item in secao_b %}
+            <tr>
+                <td>{{item.parametro}}</td>
+                <td>{{item.valor}}</td>
+                <td class="formula">{{item.formula}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <h2>3. DIMENSIONAMENTO</h2>
+    <table>
+        <tr><th>Componente</th><th>Especificação</th><th>Base</th></tr>
+        {% for item in dimensionamento %}
+        <tr>
+            <td>{{item.componente}}</td>
+            <td>{{item.especificacao}}</td>
+            <td>{{item.base}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>4. OBSERVAÇÕES TÉCNICAS</h2>
+    <ul>
+        {% for obs in observacoes %}
+        <li>{{obs}}</li>
+        {% endfor %}
+    </ul>
+
+    <div class="obs">
+        <p>Documento gerado automaticamente em {{data_hora}}</p>
+        <p>⚠️ USO INTERNO - NÃO ENVIAR PARA LIGHT</p>
+    </div>
+</body>
+</html>

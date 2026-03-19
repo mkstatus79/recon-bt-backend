@@ -1,0 +1,72 @@
+{
+  "dados_projeto": {
+    "empreendimento": "Edif\u00edcio Solar",
+    "endereco": "Rua das Flores, 123 - Centro - Rio de Janeiro/RJ",
+    "cliente": "Construtora Modelo Ltda",
+    "cliente_cpf_cnpj": "12.345.678/0001-90",
+    "cliente_telefone": "(21) 99999-9999",
+    "cliente_email": "construtora@email.com",
+    "responsavel": "Eng. Marcos",
+    "crea": "2026123456",
+    "art": "202600123456",
+    "tipo_entrada": "COLETIVA",
+    "num_ucs": 24,
+    "area_total": 1680,
+    "tensao": "220/127V",
+    "fases": 3,
+    "tipo_rede": "aereo",
+    "unidades": [
+      {
+        "area": 70,
+        "quantidade": 24,
+        "com_aquecimento": true
+      }
+    ],
+    "servico_kva": 18.71,
+    "secao_fase": 95
+  },
+  "resultados": {
+    "secao_b": {
+      "area_equivalente": 70.0,
+      "total_ucs": 24,
+      "demanda_por_uc": 2.26,
+      "fator_diversificacao": 19.88,
+      "demanda_agrupamento_base": 44.93,
+      "fator_seguranca": 1.0,
+      "demanda_agrupamento_final": 44.93,
+      "demanda_protecao_geral": 44.93,
+      "demanda_ramal": 57.27,
+      "demanda_servico": 18.71
+    },
+    "dimensionamento": {
+      "categoria": "T7",
+      "tensao": "220/127V",
+      "fases": 3,
+      "demanda_min": 57,
+      "demanda_max": 66,
+      "disjuntor": 175,
+      "eletroduto_aereo": "3\"",
+      "eletroduto_sub": "2x4\"",
+      "condutor": "4x95",
+      "protecao": "1x50",
+      "aterramento": "1x50"
+    },
+    "eletrodutos": {
+      "aereo": "2.5\"",
+      "subterraneo": "2x4\""
+    },
+    "aterramento": {
+      "num_hastes": 6,
+      "tipo_haste": "a\u00e7o cobreado 5/8\" x 2,40m",
+      "condutor_interligacao": 50,
+      "secao_fase": 95,
+      "condutor_protecao": 47,
+      "capacidade_disjuntor_ka": 20,
+      "observacoes": [
+        "Hastes interligadas com espa\u00e7amento \u2265 2,40m"
+      ]
+    }
+  },
+  "memorial": "",
+  "formularios": "pacotes/projeto_recon_bt_20260318_210433/solicitacao_ligacao_20260318_210433.json"
+}

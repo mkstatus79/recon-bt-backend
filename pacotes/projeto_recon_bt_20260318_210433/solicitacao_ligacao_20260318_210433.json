@@ -1,0 +1,45 @@
+{
+  "consumidor": {
+    "nome": "",
+    "cpf_cnpj": "12.345.678/0001-90",
+    "telefone": "(21) 99999-9999",
+    "email": "construtora@email.com"
+  },
+  "endereco": {
+    "logradouro": "",
+    "numero": "",
+    "complemento": "",
+    "bairro": "",
+    "cidade": "Rio de Janeiro",
+    "cep": ""
+  },
+  "tecnico": {
+    "nome": "",
+    "crea": "",
+    "art": ""
+  },
+  "instalacao": {
+    "tipo_entrada": "COLETIVA",
+    "num_ucs": 24,
+    "demanda_total_kva": 0,
+    "demanda_ramal_kva": 0,
+    "tensao": "220/127V",
+    "fases": 3
+  },
+  "materiais": {
+    "disjuntor": "",
+    "condutor": "",
+    "caixa_medicao": "",
+    "caixa_protecao": ""
+  },
+  "documentos_anexos": {
+    "projeto_aprovado": false,
+    "art_execucao": "",
+    "procuracoes": []
+  },
+  "controle": {
+    "data_geracao": "2026-03-18T21:04:33.531700",
+    "versao_formulario": "2026.1",
+    "protocolo": "LGT-20260318210433"
+  }
+}
