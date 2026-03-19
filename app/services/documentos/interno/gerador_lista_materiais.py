@@ -1,0 +1,140 @@
+# ============================================
+# GERADOR DE LISTA DE MATERIAIS - USO INTERNO
+# NÃO ENVIAR PARA LIGHT - Apenas para o profissional
+# ============================================
+
+import os
+import datetime
+import json
+import csv
+from pathlib import Path
+
+class GeradorListaMateriais:
+    """
+    Gera lista de materiais para compra/orçamento
+    ESTE DOCUMENTO NÃO DEVE SER ENVIADO PARA LIGHT
+    """
+    
+    def __init__(self):
+        self.output_dir = Path(__file__).parent.parent / "output" / "interno"
+        self.output_dir.mkdir(parents=True, exist_ok=True)
+    
+    def gerar_lista(self, dimensionamento):
+        """
+        Gera lista completa de materiais baseada no dimensionamento
+        """
+        timestamp = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
+        nome_base = f"lista_materiais_{timestamp}"
+        
+        materiais = []
+        
+        # Materiais baseados no dimensionamento
+        if 'disjuntor' in dimensionamento:
+            materiais.append({
+                'codigo': 'DISJ-001',
+                'descricao': f"Disjuntor {dimensionamento['disjuntor']}A tripolar",
+                'quantidade': 1,
+                'unidade': 'un',
+                'observacao': 'Proteção geral'
+            })
+        
+        if 'condutor' in dimensionamento:
+            materiais.append({
+                'codigo': 'CABO-001',
+                'descricao': f"Cabo {dimensionamento['condutor']} mm²",
+                'quantidade': dimensionamento.get('quantidade_cabo', 50),
+                'unidade': 'm',
+                'observacao': 'Ramal de entrada'
+            })
+        
+        if 'caixa_medicao' in dimensionamento:
+            materiais.append({
+                'codigo': 'CX-001',
+                'descricao': f"Caixa {dimensionamento['caixa_medicao']}",
+                'quantidade': 1,
+                'unidade': 'un',
+                'observacao': 'Medição'
+            })
+        
+        if 'num_hastes' in dimensionamento:
+            materiais.append({
+                'codigo': 'HASTE-001',
+                'descricao': 'Haste aço cobreada 5/8"x2,40m',
+                'quantidade': dimensionamento['num_hastes'],
+                'unidade': 'un',
+                'observacao': 'Aterramento'
+            })
+        
+        # Gera arquivos em múltiplos formatos (para conveniência do profissional)
+        resultados = {}
+        
+        # JSON
+        arquivo_json = self.output_dir / f"{nome_base}.json"
+        with open(arquivo_json, 'w', encoding='utf-8') as f:
+            json.dump({
+                'projeto': dimensionamento.get('projeto_nome', ''),
+                'data': datetime.datetime.now().strftime('%d/%m/%Y'),
+                'materiais': materiais,
+                'observacoes': 'Lista gerada automaticamente - NÃO enviar para Light'
+            }, f, ensure_ascii=False, indent=2)
+        resultados['json'] = str(arquivo_json)
+        
+        # CSV (para Excel)
+        arquivo_csv = self.output_dir / f"{nome_base}.csv"
+        with open(arquivo_csv, 'w', newline='', encoding='utf-8-sig') as f:
+            writer = csv.writer(f)
+            writer.writerow(['Código', 'Descrição', 'Quantidade', 'Unidade', 'Observação'])
+            for item in materiais:
+                writer.writerow([
+                    item['codigo'],
+                    item['descricao'],
+                    item['quantidade'],
+                    item['unidade'],
+                    item['observacao']
+                ])
+        resultados['csv'] = str(arquivo_csv)
+        
+        # TXT simples (para WhatsApp)
+        arquivo_txt = self.output_dir / f"{nome_base}.txt"
+        with open(arquivo_txt, 'w', encoding='utf-8') as f:
+            f.write("=" * 50 + "\n")
+            f.write("LISTA DE MATERIAIS - PROJETO RECON-BT\n")
+            f.write("=" * 50 + "\n\n")
+            f.write(f"Projeto: {dimensionamento.get('projeto_nome', 'N/A')}\n")
+            f.write(f"Data: {datetime.datetime.now().strftime('%d/%m/%Y')}\n\n")
+            f.write("MATERIAIS:\n")
+            f.write("-" * 30 + "\n")
+            for item in materiais:
+                f.write(f"{item['quantidade']} {item['unidade']} - {item['descricao']}\n")
+                if item.get('observacao'):
+                    f.write(f"  → {item['observacao']}\n")
+            f.write("\n" + "=" * 50 + "\n")
+            f.write("⚠️  ESTE DOCUMENTO É PARA USO INTERNO\n")
+            f.write("⚠️  NÃO DEVE SER ENVIADO PARA LIGHT\n")
+        resultados['txt'] = str(arquivo_txt)
+        
+        return {
+            'sucesso': True,
+            'arquivos': resultados,
+            'quantidade_materiais': len(materiais),
+            'mensagem': 'Lista de materiais gerada (uso interno)'
+        }
+
+
+# Exemplo de uso
+if __name__ == "__main__":
+    gerador = GeradorListaMateriais()
+    
+    dimensionamento = {
+        'projeto_nome': 'Edifício Solar',
+        'disjuntor': 175,
+        'condutor': '4x95',
+        'quantidade_cabo': 120,
+        'caixa_medicao': 'CSM600',
+        'num_hastes': 6
+    }
+    
+    resultado = gerador.gerar_lista(dimensionamento)
+    print(f"✅ Lista gerada:")
+    for formato, arquivo in resultado['arquivos'].items():
+        print(f"   • {formato.upper()}: {arquivo}")
