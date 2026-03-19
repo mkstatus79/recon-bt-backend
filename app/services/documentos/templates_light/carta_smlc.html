@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Light - Carta de Opção SMLC (Anexo VI)</title>
+    <style>
+        /* ===== IDENTIDADE VISUAL LIGHT ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #F5F5F5;
+            padding: 20px;
+        }
+        
+        .documento-light {
+            max-width: 700px;
+            margin: 0 auto;
+            background-color: #FFFFFF;
+            border: 2px solid #003366;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        /* ===== CABEÇALHO LIGHT ===== */
+        .header-light {
+            background-color: #003366;
+            color: white;
+            padding: 20px;
+            border-radius: 6px 6px 0 0;
+            text-align: center;
+        }
+        
+        .header-light h1 {
+            font-family: Arial Black, sans-serif;
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        
+        .header-light h2 {
+            font-size: 18px;
+            font-weight: normal;
+        }
+        
+        .header-light .anexo {
+            font-size: 14px;
+            color: #FFD700;
+            margin-top: 10px;
+        }
+        
+        /* ===== CORPO DO DOCUMENTO ===== */
+        .corpo-documento {
+            padding: 40px;
+        }
+        
+        .data-local {
+            text-align: right;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+        
+        .destinatario {
+            margin-bottom: 30px;
+        }
+        
+        .destinatario p {
+            margin: 5px 0;
+        }
+        
+        .texto-carta {
+            line-height: 1.6;
+            color: #333333;
+        }
+        
+        .texto-carta p {
+            margin: 15px 0;
+            text-align: justify;
+        }
+        
+        .destaque {
+            background-color: #F5F5F5;
+            border-left: 4px solid #003366;
+            padding: 15px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        
+        /* ===== CAMPOS DE PREENCHIMENTO ===== */
+        .campo-destaque {
+            font-weight: bold;
+            color: #003366;
+            border-bottom: 1px solid #003366;
+            padding: 2px 10px;
+            margin: 0 5px;
+        }
+        
+        .campo-linha {
+            display: inline-block;
+            min-width: 200px;
+            border-bottom: 1px solid #333333;
+            margin: 0 5px;
+        }
+        
+        /* ===== ASSINATURAS ===== */
+        .assinaturas {
+            margin-top: 50px;
+        }
+        
+        .linha-assinatura {
+            margin-top: 30px;
+        }
+        
+        .assinatura-item {
+            margin-bottom: 40px;
+        }
+        
+        .linha {
+            border-bottom: 1px solid #333333;
+            width: 100%;
+            margin-bottom: 5px;
+            padding-top: 20px;
+        }
+        
+        .cargo {
+            color: #666666;
+            font-size: 14px;
+        }
+        
+        /* ===== RODAPÉ ===== */
+        .rodape {
+            background-color: #F5F5F5;
+            padding: 15px;
+            text-align: center;
+            border-top: 1px solid #CCCCCC;
+            font-size: 12px;
+            color: #666666;
+            border-radius: 0 0 6px 6px;
+        }
+        
+        /* ===== BOTÕES ===== */
+        .botoes {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            padding: 20px;
+            background-color: #F5F5F5;
+            border-top: 2px solid #CCCCCC;
+        }
+        
+        .btn-light {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            font-family: Arial Black, sans-serif;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background-color: #003366;
+            color: white;
+        }
+        
+        .btn-secondary {
+            background-color: #FFFFFF;
+            color: #003366;
+            border: 2px solid #003366;
+        }
+    </style>
+</head>
+<body>
+    <div class="documento-light">
+        <!-- CABEÇALHO -->
+        <div class="header-light">
+            <h1>SISTEMA DE MEDIÇÃO E LEITURA CENTRALIZADA</h1>
+            <h2>SMLC - CARTA DE OPÇÃO</h2>
+            <div class="anexo">ANEXO VI - RECON-BT 2026</div>
+        </div>
+
+        <div class="corpo-documento">
+            <!-- DATA E LOCAL -->
+            <div class="data-local">
+                <p>Rio de Janeiro, <span class="campo-linha">{{dia}}</span> de <span class="campo-linha">{{mes}}</span> de <span class="campo-linha">{{ano}}</span>.</p>
+            </div>
+
+            <!-- DESTINATÁRIO -->
+            <div class="destinatario">
+                <p>À</p>
+                <p><strong>Light Serviços de Eletricidade S/A</strong></p>
+            </div>
+
+            <!-- TEXTO DA CARTA (CONFORME ANEXO VI) -->
+            <div class="texto-carta">
+                <p>
+                    O(A) <span class="campo-linha">{{interessado}}</span>, 
+                    <span class="campo-destaque">(nome do interessado)</span>, 
+                    solicita à Light Serviços de Eletricidade S/A ("LIGHT"), o atendimento da ligação do 
+                    <span class="campo-linha">{{empreendimento}}</span> 
+                    situado na <span class="campo-linha">{{endereco}}</span>, 
+                    pelo Sistema de Medição e Leitura Centralizada - SMLC.
+                </p>
+
+                <div class="destaque">
+                    <p>
+                        Declara estar ciente de que se trata de um sistema não convencional e caracterizado conforme 
+                        a Regulamentação para Fornecimento de Energia Elétrica a consumidores em Baixa Tensão – 
+                        RECON-BT da Light e a especificação do SMLC, sendo que a diferença entre os custos totais 
+                        do SMLC em relação à medição padrão convencional correrá por conta da 
+                        <span class="campo-linha">{{responsavel_pagamento}}</span>.
+                    </p>
+                </div>
+
+                <p>
+                    Desta forma, será instalada medição totalizadora no 
+                    <span class="campo-linha">{{empreendimento}}</span> 
+                    para faturamento entre o ponto de conexão e a entrada do barramento geral, conforme determina 
+                    a regulamentação da ANEEL vigente. Reconhece ainda que, neste caso, a LIGHT poderá cobrar a 
+                    diferença entre a energia elétrica apurada entre a medição totalizadora e a soma das medições 
+                    individuais de cada unidade consumidora.
+                </p>
+            </div>
+
+            <!-- ASSINATURAS (CONFORME ANEXO VI) -->
+            <div class="assinaturas">
+                <div class="assinatura-item">
+                    <div class="linha"></div>
+                    <p><strong>{{responsavel_tecnico}}</strong></p>
+                    <p class="cargo">Responsável Técnico</p>
+                    <p class="cargo">CREA/CAU: {{crea}}</p>
+                </div>
+
+                <div class="assinatura-item">
+                    <div class="linha"></div>
+                    <p><strong>{{responsavel_imovel}}</strong></p>
+                    <p class="cargo">Responsável pelo imóvel</p>
+                    <p class="cargo">CPF/CNPJ: {{cpf_cnpj}}</p>
+                </div>
+            </div>
+
+            <!-- INFORMAÇÕES ADICIONAIS -->
+            <div style="margin-top: 30px; font-size: 12px; color: #666666;">
+                <p><strong>Documento gerado conforme Anexo VI do RECON-BT 2026</strong></p>
+                <p>Protocolo: {{protocolo}}</p>
+                <p>Data de geração: {{data_geracao}}</p>
+            </div>
+        </div>
+
+        <!-- RODAPÉ COM INFORMAÇÕES LIGHT -->
+        <div class="rodape">
+            <p>Light Serviços de Eletricidade S/A - RECON-BT 2026</p>
+            <p>Este documento é parte integrante do processo de solicitação de ligação</p>
+        </div>
+
+        <!-- BOTÕES -->
+        <div class="botoes">
+            <button class="btn-light btn-secondary" onclick="window.print()">IMPRIMIR</button>
+            <button class="btn-light btn-secondary" onclick="salvarRascunho()">SALVAR RASCUNHO</button>
+            <button class="btn-light btn-primary" onclick="enviarLight()">ANEXAR AO PROCESSO</button>
+        </div>
+    </div>
+</body>
+</html>

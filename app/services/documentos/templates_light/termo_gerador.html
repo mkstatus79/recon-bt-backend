@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Light - Termo de Responsabilidade Gerador (Anexo VII)</title>
+    <style>
+        /* ===== IDENTIDADE VISUAL LIGHT ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #F5F5F5;
+            padding: 20px;
+        }
+        
+        .documento-light {
+            max-width: 700px;
+            margin: 0 auto;
+            background-color: #FFFFFF;
+            border: 2px solid #003366;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        /* ===== CABEÇALHO LIGHT ===== */
+        .header-light {
+            background-color: #003366;
+            color: white;
+            padding: 20px;
+            border-radius: 6px 6px 0 0;
+            text-align: center;
+        }
+        
+        .header-light h1 {
+            font-family: Arial Black, sans-serif;
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        
+        .header-light h2 {
+            font-size: 18px;
+            font-weight: normal;
+        }
+        
+        .header-light .anexo {
+            font-size: 14px;
+            color: #FFD700;
+            margin-top: 10px;
+        }
+        
+        /* ===== CORPO DO DOCUMENTO ===== */
+        .corpo-documento {
+            padding: 40px;
+        }
+        
+        .data-local {
+            text-align: right;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+        
+        .destinatario {
+            margin-bottom: 30px;
+        }
+        
+        .destinatario p {
+            margin: 5px 0;
+        }
+        
+        .texto-termo {
+            line-height: 1.6;
+            color: #333333;
+        }
+        
+        .texto-termo p {
+            margin: 15px 0;
+            text-align: justify;
+        }
+        
+        .destaque {
+            background-color: #F5F5F5;
+            border-left: 4px solid #D32F2F;
+            padding: 15px;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+        
+        /* ===== CAMPOS DE PREENCHIMENTO ===== */
+        .campo-destaque {
+            font-weight: bold;
+            color: #003366;
+            border-bottom: 1px solid #003366;
+            padding: 2px 10px;
+            margin: 0 5px;
+        }
+        
+        .campo-linha {
+            display: inline-block;
+            min-width: 200px;
+            border-bottom: 1px solid #333333;
+            margin: 0 5px;
+            padding: 0 5px;
+        }
+        
+        /* ===== ESPECIFICAÇÕES TÉCNICAS ===== */
+        .especificacoes {
+            background-color: #F9F9F9;
+            border: 1px solid #CCCCCC;
+            border-radius: 4px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .especificacoes h4 {
+            color: #003366;
+            margin-bottom: 15px;
+        }
+        
+        .tabela-especificacoes {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .tabela-especificacoes td {
+            padding: 8px;
+            border: 1px solid #CCCCCC;
+        }
+        
+        .tabela-especificacoes td:first-child {
+            font-weight: bold;
+            background-color: #F0F0F0;
+        }
+        
+        /* ===== ASSINATURAS ===== */
+        .assinaturas {
+            margin-top: 50px;
+        }
+        
+        .assinatura-item {
+            margin-bottom: 40px;
+        }
+        
+        .linha-assinatura {
+            border-bottom: 1px solid #333333;
+            width: 100%;
+            margin-bottom: 5px;
+            padding-top: 20px;
+        }
+        
+        .cargo {
+            color: #666666;
+            font-size: 14px;
+        }
+        
+        /* ===== AVISOS ===== */
+        .aviso {
+            background-color: #FFEBEE;
+            border-left: 4px solid #D32F2F;
+            padding: 15px;
+            margin: 20px 0;
+            font-size: 13px;
+        }
+        
+        .aviso p {
+            margin: 5px 0;
+        }
+        
+        /* ===== BOTÕES ===== */
+        .botoes {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            padding: 20px;
+            background-color: #F5F5F5;
+            border-top: 2px solid #CCCCCC;
+            border-radius: 0 0 6px 6px;
+        }
+        
+        .btn-light {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            font-family: Arial Black, sans-serif;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background-color: #003366;
+            color: white;
+        }
+        
+        .btn-secondary {
+            background-color: #FFFFFF;
+            color: #003366;
+            border: 2px solid #003366;
+        }
+    </style>
+</head>
+<body>
+    <div class="documento-light">
+        <!-- CABEÇALHO -->
+        <div class="header-light">
+            <h1>GERAÇÃO PARTICULAR DE EMERGÊNCIA</h1>
+            <h2>TERMO DE RESPONSABILIDADE</h2>
+            <div class="anexo">ANEXO VII - RECON-BT 2026</div>
+        </div>
+
+        <div class="corpo-documento">
+            <!-- DATA E LOCAL -->
+            <div class="data-local">
+                <p>Rio de Janeiro, <span class="campo-linha">{{dia}}</span> de <span class="campo-linha">{{mes}}</span> de <span class="campo-linha">{{ano}}</span>.</p>
+            </div>
+
+            <!-- DESTINATÁRIO -->
+            <div class="destinatario">
+                <p>À</p>
+                <p><strong>Light Serviços de Eletricidade S/A</strong></p>
+            </div>
+
+            <!-- TEXTO DO TERMO (CONFORME ANEXO VII) -->
+            <div class="texto-termo">
+                <p>
+                    A Empresa <span class="campo-linha">{{empresa}}</span>, 
+                    CNPJ nº <span class="campo-linha">{{cnpj}}</span>, 
+                    representada pelo profissional técnico 
+                    <span class="campo-linha">{{profissional}}</span>,
+                    registrado no Conselho de Classe atinente 
+                    <span class="campo-linha">{{conselho}}</span> 
+                    sob o nº <span class="campo-linha">{{registro}}</span>, 
+                    declara ser responsável técnico pelo projeto, dimensionamento dos equipamentos e 
+                    dispositivos de proteção da geração particular de emergência instalado no consumidor 
+                    <span class="campo-linha">{{consumidor}}</span>,
+                    situado no endereço <span class="campo-linha">{{endereco}}</span>,
+                    Município <span class="campo-linha">{{municipio}}</span>,
+                    o qual é responsável pela operação e manutenção do referido Sistema.
+                </p>
+
+                <div class="destaque">
+                    <p>
+                        O responsável declara que o sistema foi projetado para não energizar em hipótese alguma 
+                        o alimentador da Light, quando este estiver fora de operação, assumindo total 
+                        responsabilidade civil e criminal, na ocorrência de acidentes ocasionados por 
+                        insuficiência técnica do projeto, defeitos ou operação inadequada dos equipamentos 
+                        desse Sistema.
+                    </p>
+                </div>
+
+                <!-- ESPECIFICAÇÕES TÉCNICAS DO GERADOR -->
+                <div class="especificacoes">
+                    <h4>Especificações Técnicas do Gerador</h4>
+                    <table class="tabela-especificacoes">
+                        <tr>
+                            <td>Fabricante:</td>
+                            <td><span class="campo-linha">{{fabricante}}</span></td>
+                        </tr>
+                        <tr>
+                            <td>Modelo:</td>
+                            <td><span class="campo-linha">{{modelo}}</span></td>
+                        </tr>
+                        <tr>
+                            <td>Potência (kVA):</td>
+                            <td><span class="campo-linha">{{potencia}}</span></td>
+                        </tr>
+                        <tr>
+                            <td>Tensão (V):</td>
+                            <td><span class="campo-linha">{{tensao}}</span></td>
+                        </tr>
+                        <tr>
+                            <td>Tipo de chave de transferência:</td>
+                            <td><span class="campo-linha">{{chave}}</span></td>
+                        </tr>
+                        <tr>
+                            <td>Dispositivo de intertravamento:</td>
+                            <td><span class="campo-linha">{{intertravamento}}</span></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- AVISOS IMPORTANTES -->
+                <div class="aviso">
+                    <p><strong>IMPORTANTE:</strong></p>
+                    <p>• Não será permitida a utilização da geração particular de emergência antes da liberação pela Light SESA.</p>
+                    <p>• Deve-se instalar dispositivo de disparo da proteção do gerador junto à proteção geral de entrada.</p>
+                    <p>• O paralelismo com a rede da Light não é permitido para geração de emergência.</p>
+                </div>
+            </div>
+
+            <!-- ASSINATURAS (CONFORME ANEXO VII) -->
+            <div class="assinaturas">
+                <div class="assinatura-item">
+                    <div class="linha-assinatura"></div>
+                    <p><strong>{{profissional}}</strong></p>
+                    <p class="cargo">Responsável Técnico</p>
+                    <p class="cargo">{{conselho}}: {{registro}}</p>
+                </div>
+
+                <div class="assinatura-item">
+                    <div class="linha-assinatura"></div>
+                    <p><strong>{{responsavel_imovel}}</strong></p>
+                    <p class="cargo">Responsável pelo imóvel</p>
+                    <p class="cargo">{{cpf_responsavel}}</p>
+                </div>
+            </div>
+
+            <!-- INFORMAÇÕES ADICIONAIS -->
+            <div style="margin-top: 30px; font-size: 12px; color: #666666;">
+                <p><strong>Documento gerado conforme Anexo VII do RECON-BT 2026</strong></p>
+                <p>Protocolo: {{protocolo}}</p>
+                <p>Data de geração: {{data_geracao}}</p>
+            </div>
+        </div>
+
+        <!-- BOTÕES -->
+        <div class="botoes">
+            <button class="btn-light btn-secondary" onclick="window.print()">IMPRIMIR</button>
+            <button class="btn-light btn-secondary" onclick="salvarRascunho()">SALVAR RASCUNHO</button>
+            <button class="btn-light btn-primary" onclick="anexarProcesso()">ANEXAR AO PROCESSO</button>
+        </div>
+    </div>
+</body>
+</html>
