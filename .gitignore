@@ -224,3 +224,4 @@ env/
 
 # Projeto
 app/core/calculos/*.bkp
+app/services/documentos/output/
